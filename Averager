@@ -1,0 +1,19 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		int a, b, c, d;
+		Console.WriteLine("Averager");
+		Console.WriteLine("\nPlease insert the 1st number");
+		a = Convert.ToInt32(Console.ReadLine());
+		Console.WriteLine("\nPlease insert the 2nd number");
+		b = Convert.ToInt32(Console.ReadLine());
+		Console.WriteLine("\nPlease insert the 3rd number");
+		c = Convert.ToInt32(Console.ReadLine());
+		Console.WriteLine("\nPlease insert the 4th number");
+		d = Convert.ToInt32(Console.ReadLine());
+		Console.WriteLine("\n Your avergage is " + (a + b + c + d)/4);
+	}
+}
