@@ -1,0 +1,16 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		int X;
+		Console.WriteLine("Multiplication Table");
+		Console.WriteLine("\nInsert a number");
+		X = Convert.ToInt32(Console.ReadLine());
+		for (int i = 1; i < 11; i++)
+		{
+			Console.WriteLine($"\n{X} x {i} = " + (X*i));
+		}
+	}
+}
