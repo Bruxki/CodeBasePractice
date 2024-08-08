@@ -1,0 +1,23 @@
+using System;
+using System.Threading;
+					
+public class Program
+{
+	public static void Main()
+	{
+		int X, Y;
+		Console.WriteLine("Welcome to the Calculator 2.0!");
+		Console.WriteLine("\nWe made it even less useful!");
+		Console.WriteLine("\nPlease insert the 1st number");
+		X = Convert.ToInt32(Console.ReadLine());
+		Console.WriteLine("\nPlease insert the 2nd number");
+		Y = Convert.ToInt32(Console.ReadLine());
+		Console.WriteLine("\nYour result:");
+		Thread.Sleep(1000);
+		Console.WriteLine($"\n{X} + {Y} =" + (X + Y));
+		Console.WriteLine($"\n{X} - {Y} =" + (X - Y));
+		Console.WriteLine($"\n{X} x {Y} =" + (X * Y));
+		Console.WriteLine($"\n{X} / {Y} =" + (X / Y));
+		Console.WriteLine($"\n{X} mod {Y} =" + (X % Y));
+	}
+}
