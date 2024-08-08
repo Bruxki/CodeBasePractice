@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 
-public class Exercise1
+public class Program1
 {
     public static void Main()
     {
