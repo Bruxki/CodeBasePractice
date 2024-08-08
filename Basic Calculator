@@ -1,0 +1,21 @@
+using System;
+using System.Threading;
+					
+public class Program
+{
+
+    public static void Main()
+    {
+     int A, B, C;
+	 Console.Write("Welcome to the calculator");
+	 Console.Write("\nPlease insert 1st number");
+	 A = Convert.ToInt32(Console.ReadLine());
+	 Console.Write("\nInsert 2nd number");
+	 B = Convert.ToInt32(Console.ReadLine());
+	 Console.Write("\nInsert 3rd number");
+	 C = Convert.ToInt32(Console.ReadLine());
+	 Console.Write("\nExecuting the calculations...");
+	 Thread.Sleep(1000);
+	 Console.Write("\nThe calculation was successful! \nYour result:" + A * B * C);
+	}
+}
