@@ -18,7 +18,6 @@ public class Program
 		{
 			Console.WriteLine(array[i]); //skipping every 2nd output
 		}
-		Console.WriteLine("next part");
 		for(int i = 0; i< array.Length; i++)
 		{
 			int x = array[i]; //array[queue number of the data]
@@ -26,6 +25,14 @@ public class Program
 				{
 					Console.WriteLine(x);
 				}
+		}
+		Console.WriteLine("next part");
+		for(int i = 0; i < array.Length; i++)
+		{
+			int x = array[i];
+			if (x == 3) // if it so happens that we encounter a "3" the loop stops
+				break;
+			Console.WriteLine(x);
 		}
 	}
 }
