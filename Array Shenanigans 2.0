@@ -51,5 +51,24 @@ public class Program
 			Console.WriteLine(array2[i]);
 		}
 		*/
+		//Block 3
+		int y = 777;
+		int z = 4;
+		int[] largerArray = new int[array.Length + 1];
+		
+		for(int i = 0, j = 0; i < array.Length; i++)
+			{
+			if (i == z) 
+				continue;
+			largerArray[i] = array[j];
+			j++;
+			}
+		largerArray[z] = y;
+		array = largerArray;
+		
+		for(int i = 0; i < largerArray.Length; i++)
+		{
+			Console.WriteLine(largerArray[i]);
+		}
 	}
 }
