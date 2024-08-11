@@ -23,4 +23,35 @@ public class Program
 			Console.WriteLine(array[i]);
 		}
 	}
+/* //Block 4 we delete an element from the end
+	{
+	int[] array = { 0, 1, 3, 4, 5, 2, 1, -4, -1, 10, 55 };
+	int[] smolarray = new int[array.Length - 1];
+	
+	for(int i = 0; i < smolarray.Length; i++)
+		{	
+			smolarray[i] = array[i];
+		}
+	array = smolarray;
+	for(int i = 0; i< array.Length; i++)
+		{
+			Console.WriteLine(array[i]);
+		}
+	}
+*/ //Block 5 we delete an element from the beginning
+{
+	int[] array = { 0, 1, 3, 4, 5, 2, 1, -4, -1, 10, 55 };
+	int[] smolarray = new int[array.Length - 1];
+	
+	for(int i = 1; i < smolarray.Length; i++) //we go from 1 (skipping the 1st num in the big array)
+		{	
+			smolarray[i - 1] = array[i];
+		}
+	array = smolarray;
+	for(int i = 0; i< array.Length; i++)
+		{
+			Console.WriteLine(array[i]);
+		}
+	}
+*/
 }
