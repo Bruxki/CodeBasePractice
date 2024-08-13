@@ -96,6 +96,14 @@ public class Program
 			Console.WriteLine(y[i]);
 		}
 	}
-
-
+*/ //Get number of rows and columns
+	{
+		int[,] x = {{1, 4, -5, 80, 71} , {1,2,-100, 56, 99}}; //int[,] for 2 dimension grid-like array, int[][] for jagged-like array
+		int rows = x.GetUpperBound(0) + 1;
+		int columns = x.GetUpperBound(1) + 1;
+		
+		Console.WriteLine(rows);
+		Console.WriteLine(columns);
+	}
+/*
 }
