@@ -11,17 +11,17 @@ public class Program
 		double[] Peter = {55, 75, 80, 100,100};
 		double[] Eve = {96, 79, 100, 98, 90};
 		
-		string result1 = GradeCalc(Average(Anna));
+		string result1 = GradeCalc(Average(Anna)); //GradeCalc is a method that needs a double as an input, this input comes from Average, that in its turn takes an input from an array "Anna"
 		string result2 = GradeCalc(Average(Vicky));
 		string result3 = GradeCalc(Average(Max));
 		string result4 = GradeCalc(Average(Peter));
 		string result5 = GradeCalc(Average(Eve));
 		
 		Console.WriteLine($"Anna's result: {result1}");
-		Console.WriteLine($"Anna's result: {result2}");
-		Console.WriteLine($"Anna's result: {result3}");
-		Console.WriteLine($"Anna's result: {result4}");
-		Console.WriteLine($"Anna's result: {result5}");
+		Console.WriteLine($"Vicky's result: {result2}");
+		Console.WriteLine($"Max's result: {result3}");
+		Console.WriteLine($"Peter's result: {result4}");
+		Console.WriteLine($"Eve's result: {result5}");
 		
 	}
 	public static double Average(double[] grades)
@@ -47,13 +47,9 @@ public class Program
 		{
 			return ("C");
 		}
-		else if (AvNum < 70)
-		{
-			return ("D");
-		}
 		else
 		{
-			throw new ArgumentException ("invalid");
+			return ("D");
 		}
 		
 	}
