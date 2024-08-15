@@ -28,6 +28,7 @@ public class Program
 		for(int i = 0; i < products.Length; i++)
 		{
 			sum += products[i].Price * products[i].Quantity;
+			sum -= products[i].Price * products[i].Quantity * products[i].DiscountPercentage; // - the tax on the product
 		}
 		return sum;
 	}
