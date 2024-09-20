@@ -12,8 +12,7 @@ public class Program
 		
 		int playerHealth = 100;
 		int coins = 0;
-        int lvl = 0;
-		
+       		int lvl = 0;
 		//Player location(fixed)
 		int playerX = 4;
 		int playerY = 2;
@@ -24,7 +23,7 @@ public class Program
 			//Player health, coins tab:
 			Console.WriteLine($"Player Health: {playerHealth} \nCoins: {coins} \nLevel: {lvl}");
 			//reset current position
-            map[playerX,playerY] = ".";
+         		map[playerX,playerY] = ".";
 			//Player movement
 			ConsoleKeyInfo key = Console.ReadKey();
 			if (key.Key == ConsoleKey.W && playerX > 0) playerX--;
@@ -77,37 +76,38 @@ public class Program
                 MapGeneration(map);
             }
             map[playerX,playerY] = "P";
+	}
+	
+}
+static void MapRendering(string[,] map)
+{
+	Console.Clear();
+	for (int i = 0; i < map.GetLength(0); i++)
+	{
+	for (int j = 0; j < map.GetLength(1); j++)
+	Console.Write(map[i,j] + " ");
+	Console.WriteLine(" ");
+	}		
+}
+static bool MapEmptiness(string[,] map)
+{
+	for (int i = 0; i < map.GetLength(0); i++)
+	{
+		for (int j = 0; j < map.GetLength(1); j++)
+		{
+     		   if (map[i,j] == "E")
+       			{
+        		 return false;
+       			}
+        		 else if (map[i,j] == "T")
+       			{
+      		 	 return false;
+       			}
 		}
 	}
-	static void MapRendering(string[,] map)
-	{
-		Console.Clear();
-		for (int i = 0; i < map.GetLength(0); i++)
-		{
-			for (int j = 0; j < map.GetLength(1); j++)
-				Console.Write(map[i,j] + " ");
-			
-		Console.WriteLine(" ");
-		}		
-	}
-    static bool MapEmptiness(string[,] map)
-    {
-        for (int i = 0; i < map.GetLength(0); i++)
-        {
-            for (int j = 0; j < map.GetLength(1); j++)
-            {
-                if (map[i,j] == "E")
-                {
-                return false;
-                }
-                else if (map[i,j] == "T")
-                {
-                return false;
-                }
-            }
-        }
-        return true;
-    }
+ return true;
+}
+	
 	static void MapGeneration(string[,] map)
 	{
 		//map generation
