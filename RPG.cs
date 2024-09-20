@@ -12,11 +12,12 @@ public class Program
 		
 		int playerHealth = 100;
 		int coins = 0;
-        	int lvl = 0;
+        int lvl = 0;
+		
 		//Player location(fixed)
 		int playerX = 4;
 		int playerY = 2;
-		
+
 		while (gameOn)
 		{
 			MapRendering(map);
@@ -30,6 +31,7 @@ public class Program
 			else if (key.Key == ConsoleKey.S && playerX < 4) playerX++;
 			else if (key.Key == ConsoleKey.A && playerY > 0) playerY--;
 			else if (key.Key == ConsoleKey.D && playerY < 4) playerY++;
+			
             if (map[playerX,playerY] == "E")
             {
                 switch (lvl)
@@ -77,7 +79,6 @@ public class Program
             map[playerX,playerY] = "P";
 		}
 	}
-	
 	static void MapRendering(string[,] map)
 	{
 		Console.Clear();
@@ -98,12 +99,10 @@ public class Program
                 if (map[i,j] == "E")
                 {
                 return false;
-                break;
                 }
                 else if (map[i,j] == "T")
                 {
                 return false;
-                break;
                 }
             }
         }
@@ -121,21 +120,21 @@ public class Program
 		int x = rnd.Next(0,4);
 		int y = rnd.Next(0,4);
 		map[x,y] = "E";
-		
-		x = rnd.Next(0,4);
-		y = rnd.Next(0,4);
+		//2nd Enemy
+        do
+        {
+            x = rnd.Next(0,4);
+		    y = rnd.Next(0,4);
+        }
+        while (map[x,y] == "E");
 		map[x,y] = "E";
 		//Treasure generation
-		x = rnd.Next(0,4);
-		y = rnd.Next(0,4);
-		//regenerate if it's the same
-		if (map[x,y] == "E")
-		{
-			x = rnd.Next(0,4);
-			y = rnd.Next(4,0);
-			map[x,y] = "T";
-		}
-		else
+        do
+        {
+            x = rnd.Next(0,4);
+		    y = rnd.Next(0,4);
+        }
+        while (map[x,y] == "E");
 		map[x,y] = "T";
 	}
 }
