@@ -2,26 +2,26 @@ using System;
 					
 public class Program
 {
+    public static Random rnd = new Random();
 	public static void Main()
 	{
 		bool gameOn = true;
 		//creating a map
 		string[,] map = new string[5,5];
 		MapGeneration(map);
-		Random rnd = new Random();
+		
 		int playerHealth = 100;
 		int coins = 0;
-		
+        	int lvl = 0;
 		//Player location(fixed)
 		int playerX = 4;
 		int playerY = 2;
 		
 		while (gameOn)
 		{
-           
 			MapRendering(map);
 			//Player health, coins tab:
-			Console.WriteLine($"Player Health: {playerHealth} \nCoins: {coins}");
+			Console.WriteLine($"Player Health: {playerHealth} \nCoins: {coins} \nLevel: {lvl}");
 			//reset current position
             map[playerX,playerY] = ".";
 			//Player movement
@@ -30,24 +30,51 @@ public class Program
 			else if (key.Key == ConsoleKey.S && playerX < 4) playerX++;
 			else if (key.Key == ConsoleKey.A && playerY > 0) playerY--;
 			else if (key.Key == ConsoleKey.D && playerY < 4) playerY++;
-			
             if (map[playerX,playerY] == "E")
             {
-                playerHealth -= rnd.Next(20, 80);
+                switch (lvl)
+                {
+                    case 0:
+                    playerHealth -= rnd.Next(20, 80);
+                    break;
+                    case 1:
+                    playerHealth -= rnd.Next(20,50);
+                    break;
+                    case 2:
+                    playerHealth -= rnd.Next(10,30);
+                    break;
+                    default:
+                    playerHealth -= rnd.Next(10);
+                    break;
+                }
+                lvl += rnd.Next(0,2);
             }
             else if (map[playerX,playerY] == "T")
             {
                 coins += rnd.Next(20);
+                playerHealth += rnd.Next(25,75);
+                lvl += rnd.Next(0,2);
             }
             if (playerHealth <= 0)
             {
-            Console.Clear();
-            Console.WriteLine("You lost");
-            gameOn = false;
-            break;
+                Console.Clear();
+                Console.WriteLine("You lost");
+                gameOn = false;
+                break;
+            }
+            if (lvl >= 5)
+            {
+                Console.Clear();
+                Console.WriteLine("You won!");
+                gameOn = false;
+                break;
+            }
+            //Is the map empty and needs to be regenerated?
+            if (MapEmptiness(map) == true)
+            {
+                MapGeneration(map);
             }
             map[playerX,playerY] = "P";
-
 		}
 	}
 	
@@ -62,6 +89,26 @@ public class Program
 		Console.WriteLine(" ");
 		}		
 	}
+    static bool MapEmptiness(string[,] map)
+    {
+        for (int i = 0; i < map.GetLength(0); i++)
+        {
+            for (int j = 0; j < map.GetLength(1); j++)
+            {
+                if (map[i,j] == "E")
+                {
+                return false;
+                break;
+                }
+                else if (map[i,j] == "T")
+                {
+                return false;
+                break;
+                }
+            }
+        }
+        return true;
+    }
 	static void MapGeneration(string[,] map)
 	{
 		//map generation
@@ -71,7 +118,6 @@ public class Program
 				map[i,j] = ".";
 		}
 		//Enemy location generation
-		Random rnd = new Random();
 		int x = rnd.Next(0,4);
 		int y = rnd.Next(0,4);
 		map[x,y] = "E";
@@ -91,6 +137,5 @@ public class Program
 		}
 		else
 		map[x,y] = "T";
-		
 	}
 }
