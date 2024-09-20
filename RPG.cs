@@ -18,11 +18,12 @@ public class Program
 		
 		while (gameOn)
 		{
+           
 			MapRendering(map);
 			//Player health, coins tab:
 			Console.WriteLine($"Player Health: {playerHealth} \nCoins: {coins}");
-			Console.ReadLine();
-			
+			//reset current position
+            map[playerX,playerY] = ".";
 			//Player movement
 			ConsoleKeyInfo key = Console.ReadKey();
 			if (key.Key == ConsoleKey.W && playerX > 0) playerX--;
@@ -30,22 +31,29 @@ public class Program
 			else if (key.Key == ConsoleKey.A && playerY > 0) playerY--;
 			else if (key.Key == ConsoleKey.D && playerY < 4) playerY++;
 			
-			map[playerX,playerY] = "P";
+            if (map[playerX,playerY] == "E")
+            {
+                playerHealth -= rnd.Next(20, 80);
+            }
+            else if (map[playerX,playerY] == "T")
+            {
+                coins += rnd.Next(20);
+            }
+            if (playerHealth <= 0)
+            {
+            Console.Clear();
+            Console.WriteLine("You lost");
+            gameOn = false;
+            break;
+            }
+            map[playerX,playerY] = "P";
+
 		}
 	}
-	/*static void PlayerMovement(string[,] map)
-	{
-		
-		Console.ReadLine();
-		
-		
-		
-		
-	}*/
+	
 	static void MapRendering(string[,] map)
 	{
-		//Online emulator doesn't allow the updating:
-		//Console.Clear();
+		Console.Clear();
 		for (int i = 0; i < map.GetLength(0); i++)
 		{
 			for (int j = 0; j < map.GetLength(1); j++)
