@@ -11,9 +11,6 @@ class Library
 {
 	public Book[] books = new Book[10];
 	
-	
-	
-	
 	public void AddBook(Book newBook)
 	{
 		for (int i = 0; i< books.Length; i++)
@@ -34,18 +31,18 @@ class Library
 	
 }
 
-
 public class Program
 {
 	public static void Main()
 	{
 		Library library = new Library();
 		Book newBook = new Book();
-		
+		LoadLibraryBooks();
 		Console.WriteLine("Welcome to the Library");
 		//menu
 	while (true)
 	{
+		
 		string answer;
 		Menu(out answer);
 		//check all books
@@ -76,8 +73,11 @@ public class Program
 		}
 		//take a book
 		else if (answer == "3")
-		{
 			TakeBook();
+		//return a book
+		else if (answer == "4")
+		{
+			ReturnBook();
 		}
 		//add a book
 		else if (answer == "5")
@@ -90,6 +90,7 @@ public class Program
 			library.AddBook(newBook);
 			return;
 		}
+		//Menu method
 		void Menu(out string answer)
 		{
 			Console.WriteLine("\nHere are your options:\n1) Check out all the books\n2) Check out availability of a certain book");
@@ -109,11 +110,11 @@ public class Program
                 }
             }
 		}
+		//Take a book from the library method
 		void TakeBook()
 		{
-			Console.WriteLine("Please name the book you'd like to take");
+			Console.WriteLine("Please name the book you'd like to take.");
 			string name = Console.ReadLine().ToLower().Trim();
-			bool available = false;
 			for (int i = 0; i < library.books.Length; i++)
 			{
 				if (library.books[i].title.Contains(name))
@@ -135,7 +136,51 @@ public class Program
 			Console.WriteLine("Failed to find a book, try again later");
 			return;
 		}
-	
+		//Return the book to the library method
+		void ReturnBook()
+		{
+			Console.WriteLine("Please name the book you'd like to return.");
+			string name = Console.ReadLine().ToLower().Trim();
+			for (int i = 0; i < library.books.Length; i++)
+			{
+				if (library.books[i].title.Contains(name))
+				{
+					if (library.books[i].isAvailable == false)
+					{
+						Console.WriteLine("You are returning " + library.books[i].title);
+						library.books[i].isAvailable = true;
+						return;
+					}
+					else
+					{
+						Console.WriteLine("Error: the book is not taken");
+						return;
+					}
+				}
+			}
+			Console.WriteLine("Error: incorrect name or the book is not from this library");
+		}
+		//Loading the books into the library
+		void LoadLibraryBooks()
+		{
+			Console.WriteLine("Loading the library..");
+			//1st book
+			library.books[0].title = "Murder!";
+			library.books[0].author = "Arnold Bennett";
+			library.books[0].isbn = "1-86092-012-8";
+			library.books[0].isAvailable = true;
+			//2nd book
+			library.books[0].title = "The Grass is Always Greener";
+			library.books[0].author = "Jeffrey Archer";
+			library.books[0].isbn = "1-86092-049-7";
+			library.books[0].isAvailable = true;
+			//3rd book
+			library.books[0].title = "The Higgler";
+			library.books[0].author = "A. E. Coppard";
+			library.books[0].isbn = "1-86092-010-1";
+			library.books[0].isAvailable = false;
+			
+		}
 	}
 	
 }
