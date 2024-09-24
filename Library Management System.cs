@@ -28,7 +28,18 @@ class Library
 				}
 		}
 	}
-	
+	//separate method to find books
+	public Book? FindBookByTitle(string title)
+	{
+		for (int i = 0; i < books.Length; i++)
+		{
+			if (!string.IsNullOrEmpty(books[i].title) && books[i].title.ToLower().Trim().Contains(title.ToLower().Trim()))
+			{
+				return books[i];
+			}
+		}
+		return null;
+	}
 }
 
 
@@ -47,6 +58,7 @@ public class Program
 		string answer;
 		Menu(out answer);
 		//check all books
+		
 		if (answer == "1")
 		{
 			CheckAllBooks();
@@ -98,11 +110,8 @@ public class Program
 		{
 			for (int i = 0; i < library.books.Length; i++)
 				{
-					if (string.IsNullOrEmpty(library.books[i].title))
-					{
-						
-					}
-					else
+					if (!string.IsNullOrEmpty(library.books[i].title))
+
 					{
 						Console.WriteLine("\nTitle: " + library.books[i].title);
 						Console.WriteLine("Author: " + library.books[i].author);
@@ -116,26 +125,21 @@ public class Program
 		{
 			Console.WriteLine("Please name the book you'd like to take.");
 			string name = Console.ReadLine().ToLower().Trim();
-			for (int i = 0; i < library.books.Length; i++)
+			Book? book = library.FindBookByTitle(name);
+			if (book != null && book.Value.isAvailable)
 			{
-				if (library.books[i].title.ToLower().Trim().Contains(name))
+				Console.WriteLine("You are taking " + book.Value.title);
+				for (int i = 0; i < library.books.Length; i++)
 				{
-					if (library.books[i].isAvailable == true)
+					if (library.books[i].title == book.Value.title)
 					{
-						Console.WriteLine("You are taking " + library.books[i].title);
 						library.books[i].isAvailable = false;
-						return;
-					}
-					else
-					{
-						Console.WriteLine("The book " + library.books[i].title + " is unavailable, try again later");
-						return;
+						break;
 					}
 				}
-				
 			}
-			Console.WriteLine("Failed to find a book, try again later");
-			return;
+			else
+				Console.WriteLine(book != null? "This book is unavailable." : "Failed to find a book, try again later.");
 		}
 		//Return the book to the library method
 		void ReturnBook()
