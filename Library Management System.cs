@@ -171,11 +171,9 @@ public class Program
 			string name = Console.ReadLine().ToLower().Trim();
 			Book? book = library.FindBookByTitle(name);
 			
-			
-			for (int i = 0; i < library.books.Length; i++)
 			{
 				if (book != null)
-					Console.WriteLine("Full Title: " + library.books[i].title + "\nAvailability: " + library.books[i].isAvailable);
+					Console.WriteLine("Full Title: " + book.Value.title + "\nAvailability: " + book.Value.isAvailable);
 				else
 					Console.WriteLine("The book was not found");
 			}
