@@ -139,31 +139,30 @@ public class Program
 				}
 			}
 			else
-				Console.WriteLine(book != null? "This book is unavailable." : "Failed to find a book, try again later.");
+				Console.WriteLine(book != null? "This book is unavailable." : "Failed to find the book, try again later.");
 		}
 		//Return the book to the library method
 		void ReturnBook()
 		{
 			Console.WriteLine("Please name the book you'd like to return.");
 			string name = Console.ReadLine().ToLower().Trim();
-			for (int i = 0; i < library.books.Length; i++)
+			
+			Book? book = library.FindBookByTitle(name);
+			
+			if (book != null && !book.Value.isAvailable)
 			{
-				if (library.books[i].title.ToLower().Trim().Contains(name))
+				Console.WriteLine("You are returning " + book.Value.title);
+				for (int i = 0; i < library.books.Length; i++)
 				{
-					if (library.books[i].isAvailable == false)
+					if (library.books[i].title == book.Value.title)
 					{
-						Console.WriteLine("You are returning " + library.books[i].title);
 						library.books[i].isAvailable = true;
-						return;
-					}
-					else
-					{
-						Console.WriteLine("Error: the book is not taken");
-						return;
+						break;
 					}
 				}
 			}
-			Console.WriteLine("Error: incorrect name or the book is not from this library");
+			else
+				Console.WriteLine(book != null? "This book is already available." : "Failed to find the book, try again later.");
 		}
 		//Check availability Method
 		void CheckAvailability()
