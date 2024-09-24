@@ -31,6 +31,7 @@ class Library
 	
 }
 
+
 public class Program
 {
 	public static void Main()
@@ -48,28 +49,12 @@ public class Program
 		//check all books
 		if (answer == "1")
 		{
-			for (int i = 0; i < library.books.Length; i++)
-				{
-					Console.WriteLine("Title: " + library.books[i].title);
-					Console.WriteLine("Author: " + library.books[i].author);
-					Console.WriteLine("ISBN: " + library.books[i].isbn);
-					Console.WriteLine("Availability: " + library.books[i].isAvailable);
-				}
+			CheckAllBooks();
 		}
 		//check the availability
 		else if (answer == "2")
 		{
-			Console.WriteLine("Please name the title of the book");
-			string name = Console.ReadLine().ToLower().Trim();
-			for (int i = 0; i < library.books.Length; i++)
-			{
-				if (library.books[i].title.Contains(name))
-				{
-					Console.WriteLine("Full Title: " + library.books[i].title + "\nAvailability: " + library.books[i].isAvailable);
-					break;
-				}
-				
-			}
+			CheckAvailability();
 		}
 		//take a book
 		else if (answer == "3")
@@ -110,7 +95,25 @@ public class Program
                 }
             }
 		}
-		//Take a book from the library method
+		//Look through all the books
+		void CheckAllBooks()
+		{
+			for (int i = 0; i < library.books.Length; i++)
+				{
+					if (string.IsNullOrEmpty(library.books[i].title))
+					{
+						
+					}
+					else
+					{
+						Console.WriteLine("\nTitle: " + library.books[i].title);
+						Console.WriteLine("Author: " + library.books[i].author);
+						Console.WriteLine("ISBN: " + library.books[i].isbn);
+						Console.WriteLine("Availability: " + library.books[i].isAvailable);
+					}
+				}
+		}
+		//Take a book form the library method
 		void TakeBook()
 		{
 			Console.WriteLine("Please name the book you'd like to take.");
@@ -160,6 +163,21 @@ public class Program
 			}
 			Console.WriteLine("Error: incorrect name or the book is not from this library");
 		}
+		//Check availability Method
+		void CheckAvailability()
+		{
+			Console.WriteLine("Please name the title of the book");
+			string name = Console.ReadLine().ToLower().Trim();
+			for (int i = 0; i < library.books.Length; i++)
+			{
+				if (library.books[i].title.Contains(name))
+				{
+					Console.WriteLine("Full Title: " + library.books[i].title + "\nAvailability: " + library.books[i].isAvailable);
+					break;
+				}
+				
+			}
+		}
 		//Loading the books into the library
 		void LoadLibraryBooks()
 		{
@@ -170,15 +188,15 @@ public class Program
 			library.books[0].isbn = "1-86092-012-8";
 			library.books[0].isAvailable = true;
 			//2nd book
-			library.books[0].title = "The Grass is Always Greener";
-			library.books[0].author = "Jeffrey Archer";
-			library.books[0].isbn = "1-86092-049-7";
-			library.books[0].isAvailable = true;
+			library.books[1].title = "The Grass is Always Greener";
+			library.books[1].author = "Jeffrey Archer";
+			library.books[1].isbn = "1-86092-049-7";
+			library.books[1].isAvailable = true;
 			//3rd book
-			library.books[0].title = "The Higgler";
-			library.books[0].author = "A. E. Coppard";
-			library.books[0].isbn = "1-86092-010-1";
-			library.books[0].isAvailable = false;
+			library.books[2].title = "The Higgler";
+			library.books[2].author = "A. E. Coppard";
+			library.books[2].isbn = "1-86092-010-1";
+			library.books[2].isAvailable = false;
 			
 		}
 	}
