@@ -31,6 +31,7 @@ class Library
 				}
 		}
 	}
+	
 }
 
 
@@ -73,14 +74,16 @@ public class Program
 				
 			}
 		}
+		//take a book
+		else if (answer == "3")
+		{
+			TakeBook();
+		}
 		//add a book
 		else if (answer == "5")
 			AddABook();
-		
-		
-			
-			
-			
+		else
+			Console.WriteLine("Invalid answer, try again");
 	}		
 		void AddABook()
 		{
@@ -105,6 +108,32 @@ public class Program
                     Console.WriteLine("Please try again");
                 }
             }
+		}
+		void TakeBook()
+		{
+			Console.WriteLine("Please name the book you'd like to take");
+			string name = Console.ReadLine().ToLower().Trim();
+			bool available = false;
+			for (int i = 0; i < library.books.Length; i++)
+			{
+				if (library.books[i].title.Contains(name))
+				{
+					if (library.books[i].isAvailable == true)
+					{
+						Console.WriteLine("You are taking " + library.books[i].title);
+						library.books[i].isAvailable = false;
+						return;
+					}
+					else
+					{
+						Console.WriteLine("The book " + library.books[i].title + " is unavailable, try again later");
+						return;
+					}
+				}
+				
+			}
+			Console.WriteLine("Failed to find a book, try again later");
+			return;
 		}
 	
 	}
