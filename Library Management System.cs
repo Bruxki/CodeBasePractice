@@ -67,8 +67,6 @@ public class Program
 		//add a book
 		else if (answer == "5")
 			AddABook();
-		else
-			Console.WriteLine("Invalid answer, try again");
 	}		
 		void AddABook()
 		{
@@ -120,7 +118,7 @@ public class Program
 			string name = Console.ReadLine().ToLower().Trim();
 			for (int i = 0; i < library.books.Length; i++)
 			{
-				if (library.books[i].title.Contains(name))
+				if (library.books[i].title.ToLower().Trim().Contains(name))
 				{
 					if (library.books[i].isAvailable == true)
 					{
@@ -146,7 +144,7 @@ public class Program
 			string name = Console.ReadLine().ToLower().Trim();
 			for (int i = 0; i < library.books.Length; i++)
 			{
-				if (library.books[i].title.Contains(name))
+				if (library.books[i].title.ToLower().Trim().Contains(name))
 				{
 					if (library.books[i].isAvailable == false)
 					{
@@ -170,13 +168,14 @@ public class Program
 			string name = Console.ReadLine().ToLower().Trim();
 			for (int i = 0; i < library.books.Length; i++)
 			{
-				if (library.books[i].title.Contains(name))
+				if (library.books[i].title.ToLower().Trim().Contains(name))
 				{
 					Console.WriteLine("Full Title: " + library.books[i].title + "\nAvailability: " + library.books[i].isAvailable);
 					break;
 				}
 				
 			}
+			Console.WriteLine("The book was not found, try again later..");
 		}
 		//Loading the books into the library
 		void LoadLibraryBooks()
