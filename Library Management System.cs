@@ -169,16 +169,16 @@ public class Program
 		{
 			Console.WriteLine("Please name the title of the book");
 			string name = Console.ReadLine().ToLower().Trim();
+			Book? book = library.FindBookByTitle(name);
+			
+			
 			for (int i = 0; i < library.books.Length; i++)
 			{
-				if (library.books[i].title.ToLower().Trim().Contains(name))
-				{
+				if (book != null)
 					Console.WriteLine("Full Title: " + library.books[i].title + "\nAvailability: " + library.books[i].isAvailable);
-					break;
-				}
-				
+				else
+					Console.WriteLine("The book was not found");
 			}
-			Console.WriteLine("The book was not found, try again later..");
 		}
 		//Loading the books into the library
 		void LoadLibraryBooks()
