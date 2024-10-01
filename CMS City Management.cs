@@ -27,7 +27,7 @@ struct Stuff
 class Events
 {
 	Random rnd = new Random();
-	public void Earthquake(int population, int water, int food, int money, bool hospital, bool shelter)
+	public void Earthquake(ref int population, ref int water, ref int food, ref int money, ref bool hospital, ref bool shelter)
 	{
 		if (hospital && shelter)
 			population -= rnd.Next(10,50);
@@ -43,7 +43,7 @@ class Events
 			hospital = false;
 		money -= rnd.Next(1000,4000);
 	}
-	public void Hurricane(int population, int water, int food, int money, bool hospital, bool shelter)
+	public void Hurricane(ref int population, ref int water, ref int food, ref int money, ref bool hospital, ref bool shelter)
 	{
 		if (hospital && shelter)
 			population -= rnd.Next(10,50);
@@ -59,35 +59,35 @@ class Events
 			hospital = false;
 		money -= rnd.Next(700,1500);		
 	}
-	public void Drought(int population, int water, int food, int money)
+	public void Drought(ref int population, ref int water, ref int food, ref int money)
 	{
 		population -= rnd.Next(50,100);
 		water -= rnd.Next(50);
 		food -= rnd.Next(20);
 		money -= rnd.Next(500,1000);		
 	}
-	public void Famine(int population, int water, int food, int money)
+	public void Famine(ref int population, ref int water, ref int food, ref int money)
 	{
 		water -= rnd.Next(20);
 		food -= rnd.Next(50);
 		money -= rnd.Next(800,1200);
 		population -= rnd.Next(100,150);
 	}
-	public void GoodDay(int population, int water, int food, int money)
+	public void GoodDay(ref int population, ref int water, ref int food, ref int money)
 	{
 		water += rnd.Next(20);
 		food += rnd.Next(20);
 		money += rnd.Next(100,1000);
 		population += rnd.Next(10,50);		
 	}
-	public void SunnyDay(int population, int water, int food, int money)
+	public void SunnyDay(ref int population, ref int water, ref int food, ref int money)
 	{
 		water += rnd.Next(10);
 		food += rnd.Next(10);
 		money += rnd.Next(100,500);
 		population += rnd.Next(10,30);			
 	}
-	public void RegularDay(int population, int water, int food, int money)
+	public void RegularDay(ref int population, ref int water, ref int food, ref int money)
 	{
 		water += rnd.Next(5);
 		food += rnd.Next(5);
@@ -97,7 +97,7 @@ class Events
 }
 class Actions
 {
-	public void BuildHospital(bool hospital, int money)
+	public void BuildHospital(ref bool hospital, ref int money)
 	{
 		if (hospital == false)
 		{
@@ -112,7 +112,7 @@ class Actions
 		else
 			Console.WriteLine("Already built");
 	}
-	public void BuildFarm(bool farm, int money)
+	public void BuildFarm(ref bool farm, ref int money)
 	{
 		if (farm == false)
 		{
@@ -127,7 +127,7 @@ class Actions
 		else
 			Console.WriteLine("Already built");
 	}
-	public void BuildShelter(bool shelter, int money)
+	public void BuildShelter(ref bool shelter, ref int money)
 	{
 		if (shelter == false)
 		{
@@ -142,7 +142,7 @@ class Actions
 		else
 			Console.WriteLine("Already built");
 	}
-	public void BuildReservoir(bool reservoir, int money)
+	public void BuildReservoir(ref bool reservoir, ref int money)
 	{
 		if (reservoir == false)
 		{
@@ -211,16 +211,16 @@ public class Program
 				switch (answer)
 				{
 					case "1":
-						actions.BuildHospital(city.hospital, city.money);
+						actions.BuildHospital(ref city.hospital, ref city.money);
 					break;
 					case "2":
-						actions.BuildShelter(city.shelter, city.money);
+						actions.BuildShelter(ref city.shelter, ref city.money);
 					break;
 					case "3":
-						actions.BuildFarm(city.farm, city.money);
+						actions.BuildFarm(ref city.farm, ref city.money);
 					break;
 					case "4":
-						actions.BuildReservoir(city.reservoir, city.money);
+						actions.BuildReservoir(ref city.reservoir, ref city.money);
 					break;
 				}
 			}
@@ -247,43 +247,43 @@ public class Program
 			Console.WriteLine("Today is:");
 			if (x < 10)
 			{
-				events.GoodDay(city.population, city.water, city.food, city.money); 
+				events.GoodDay(ref city.population, ref city.water, ref city.food, ref city.money); 
 				Console.WriteLine("A good day");
 			}
 				//good day
 			else if (x < 20)
 			{
-				events.SunnyDay(city.population, city.water, city.food, city.money); 
+				events.SunnyDay(ref city.population, ref city.water, ref city.food, ref city.money); 
 				Console.WriteLine("A sunny day");
 			}
 				//sunny day
 			else if (x < 30)
 			{
-				events.RegularDay(city.population, city.water, city.food, city.money); 
+				events.RegularDay(ref city.population, ref city.water, ref city.food, ref city.money); 
 				Console.WriteLine("A regular day");
 			}
 				//regular day
 			else if (x < 40)
 			{
-				events.Famine(city.population, city.water, city.food, city.money); 
+				events.Famine(ref city.population, ref city.water, ref city.food, ref city.money); 
 				Console.WriteLine("A famine");
 			}
 				//famine
 			else if (x < 60)
 			{
-				events.Drought(city.population, city.water, city.food, city.money); 
+				events.Drought(ref city.population, ref city.water, ref city.food, ref city.money); 
 				Console.WriteLine("A drought");
 			}
 				//drought
 			else if (x < 70)
 			{
-				events.Hurricane(city.population, city.water, city.food, city.money, city.hospital, city.shelter); 
+				events.Hurricane(ref city.population, ref city.water, ref city.food, ref city.money, ref city.hospital, ref city.shelter); 
 				Console.WriteLine("A hurricane");
 			}
 				//hurricane
 			else if (x < 80)
 			{
-				events.Earthquake(city.population, city.water, city.food, city.money, city.hospital, city.shelter); 
+				events.Earthquake(ref city.population, ref city.water, ref city.food, ref city.money, ref city.hospital, ref city.shelter); 
 				Console.WriteLine("An earthquake");
 			}
 				//earthquake
