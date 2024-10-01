@@ -303,6 +303,19 @@ public class Program
 				city.water += 80;
 			else
 				city.water += 30;
+			if (city.water < 0)
+			{
+				city.population += (city.water * 2);
+				Console.WriteLine("Population doesn't have enough water, "+ (city.water * 4) + " has died");
+				city.water = 0;
+			}
+			if (city.food < 0)
+			{
+				city.population += (city.food * 2);
+				Console.WriteLine("Population doesn't have enough food, "+ (city.food * 4) + " has died");
+				city.food = 0;
+			}
+			Console.WriteLine("Population left: "+ city.population);
 			
 		}
 	}
