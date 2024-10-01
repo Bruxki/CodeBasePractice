@@ -181,7 +181,7 @@ public class Program
 		while (gameOn)
 		{
 			Menu();
-			Day();
+			Day(ref gameOn);
 			
 			if (gameOn == false)
 				break;
@@ -229,7 +229,7 @@ public class Program
 			Console.WriteLine("Moving on to the next day...");
 		}
 		
-		void Day()
+		void Day(ref bool GameOn)
 		{
 			Random rnd = new Random();
 			int x;
@@ -305,17 +305,21 @@ public class Program
 				city.water += 30;
 			if (city.water < 0)
 			{
-				city.population += (city.water * 2);
-				Console.WriteLine("Population doesn't have enough water, "+ (city.water * 4) + " has died");
+				city.population -= Math.Abs(city.water * 10);
+				Console.WriteLine("Population doesn't have enough water, "+ Math.Abs(city.water * 10) + " has died");
 				city.water = 0;
 			}
 			if (city.food < 0)
 			{
-				city.population += (city.food * 2);
-				Console.WriteLine("Population doesn't have enough food, "+ (city.food * 4) + " has died");
+				city.population -= Math.Abs(city.food * 10);
+				Console.WriteLine("Population doesn't have enough food, "+ Math.Abs(city.food * 10) + " has died");
 				city.food = 0;
 			}
 			Console.WriteLine("Population left: "+ city.population);
+			if (city.population <= 0)
+			{
+				GameOn = false;
+			}
 			
 		}
 	}
