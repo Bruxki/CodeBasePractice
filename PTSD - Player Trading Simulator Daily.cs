@@ -22,7 +22,7 @@ public class Program
 		ItemInit();
 		player.money = 15;
 		Console.WriteLine("You are a trader, trade your way up top!\nCareful: if your balance reaches zero - you can die from disappointment");
-		
+		Console.WriteLine("Starting balance: " + player.money);
 		while (gameOn)
 		{
 			Day(day);
@@ -91,13 +91,13 @@ public class Program
 		Randomizer(day, out rnd);
 		if (day % 2 == 0)
 		{
-		apple.price = Math.Abs(apple.price + rnd);
+		apple.price = Math.Abs(apple.price - rnd);
 		orange.price = Math.Abs(orange.price + rnd);
 		carrot.price = Math.Abs(carrot.price + rnd);	
 		}
 		else
 		{
-		apple.price = Math.Abs(apple.price - rnd);
+		apple.price = Math.Abs(apple.price + rnd);
 		orange.price = Math.Abs(orange.price - rnd);
 		carrot.price = Math.Abs(carrot.price - rnd);	
 		}
