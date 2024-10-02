@@ -20,12 +20,24 @@ public class Program
 		int day = 0;
 		bool gameOn = true;
 		ItemInit();
+		player.money = 15;
 		
 		while (gameOn)
 		{
 			Day(day);
 			day++;
-			gameOn = true;
+			if (player.money >= 200)
+			{
+				Console.WriteLine("You died of happiness");
+				gameOn = false;
+			}
+			else if (player.money <= 0)
+			{
+				Console.WriteLine("You died because you had too little money..");
+				gameOn = false;
+			}
+			else
+				gameOn = true;
 		}
 		Console.WriteLine("Game Over \nYour results: \n Money: " + player.money);
 	}
@@ -94,6 +106,7 @@ public class Program
         Console.WriteLine(orange.itemName + " - " + orange.price);
         Console.WriteLine(carrot.itemName + " - " + carrot.price);
 		
+		Console.WriteLine("You have: " + player.money + " money");
 		while (true)
 		{
 			Console.WriteLine("Do you want to buy or sell anyhting? s - sell, b - buy, c - check inventory, n - no, skip");
@@ -235,7 +248,7 @@ public class Program
 					}
 					else if (id == 2)
 					{
-						if (player.money - orange.price < 0)
+						if (player.money - carrot.price < 0)
 						{
 							Console.WriteLine("Not enough money");
 							break;
@@ -256,7 +269,99 @@ public class Program
 	}
 	static void Sell()
 	{
+		Console.WriteLine("Choose what to sell: apples: a, oranges: o, carrots: c");
+		int id = 0; //item id
+		while (true)
+		{
+			string answer = Console.ReadLine().ToLower().Trim();
+			if (answer == "a")
+			{
+				id = 0;
+				break;
+			}
+			else if (answer == "o")
+			{
+				id = 1;
+				break;
+			}
+			else if (answer == "c")
+			{
+				id = 2;
+				break;
+			}
+			else
+			{
+				Console.WriteLine("Try again");
+				continue;
+			}
+		}
+		int number = 0;
+		for (int i = 0; i< player.inventory.Length; i++)
+		{
+			if (id ==0)
+			{
+				if (player.inventory[i] == apple)
+					number++;
+			}
+			else if (id ==1)
+			{
+				if (player.inventory[i] == orange)
+					number++;
+			}
+			else if (id ==2)
+			{
+				if (player.inventory[i] == carrot)
+					number++;
+			}
+		}
+		if (id == 0)
+			Console.WriteLine("how many? You have: " + number + " of apples");
+		else if (id ==1)
+			Console.WriteLine("how many? You have: " + number +" of orranges");
+		else if (id ==2)
+			Console.WriteLine("how many? You have: "+ number +" of carrots");
 		
+		while (true)
+		{
+			bool success = false;
+			success = Int32.TryParse(Console.ReadLine().ToLower().Trim(), out number);
+			if (success == true)
+				break;
+			else
+			{
+				Console.WriteLine("Not a valid number");
+				continue;
+			}
+		}
+		int num_ = 0;
+		if (number != 0)
+		{
+			for (int i =0; i < player.inventory.Length; i++)
+			{
+				if (number > 0)
+				{
+					if (id == 0 && player.inventory[i] == apple)
+					{
+						player.inventory[i] = null;
+						player.money += apple.price;
+						number--;
+					}
+					else if (id == 1 && player.inventory[i] == orange)
+					{
+						player.inventory[i] = null;
+						player.money += orange.price;
+						number--;
+					}
+					else if (id == 2 && player.inventory[i] == carrot)
+					{
+						player.inventory[i] = null;
+						player.money += carrot.price;
+						number--;
+					}
+				num_++;
+				}
+			}
+		Console.WriteLine("You have sold " + num_ + " items\n Money: " + player.money);
+		}
 	}
-	
 }
