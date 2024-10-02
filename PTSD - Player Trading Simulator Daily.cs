@@ -153,10 +153,10 @@ public class Program
 	static void Buy()
 	{
 		Console.WriteLine("Choose what to buy: apples: a, oranges: o, carrots: c");
-		string answer = Console.ReadLine().ToLower().Trim();
 		int id = 0; //item id
 		while (true)
 		{
+			string answer = Console.ReadLine().ToLower().Trim();
 			if (answer == "a")
 			{
 				id = 0;
@@ -205,18 +205,47 @@ public class Program
 				if (player.inventory[i] == null && number > 0)
 				{
 					number--;
-					num_++;
 					if (id == 0)
 					{
-						player.inventory[i] = apple;
+						if (player.money - apple.price < 0)
+						{
+							Console.WriteLine("Not enough money");
+							break;
+						}
+						else
+						{
+							player.inventory[i] = apple;
+							player.money -= apple.price;
+							num_++;
+						}
 					}
 					else if (id == 1)
 					{
-						player.inventory[i] = orange;
+						if (player.money - orange.price < 0)
+						{
+							Console.WriteLine("Not enough money");
+							break;
+						}
+						else
+						{
+							player.inventory[i] = orange;
+							player.money -= orange.price;
+							num_++;
+						}
 					}
 					else if (id == 2)
 					{
-						player.inventory[i] = carrot;
+						if (player.money - orange.price < 0)
+						{
+							Console.WriteLine("Not enough money");
+							break;
+						}
+						else
+						{
+							player.inventory[i] = carrot;
+							player.money -= carrot.price;
+							num_++;
+						}
 					}
 				}
 			}
