@@ -21,6 +21,7 @@ public class Program
 		bool gameOn = true;
 		ItemInit();
 		player.money = 15;
+		Console.WriteLine("You are a trader, trade your way up top!\nCareful: if your balance reaches zero - you can die from disappointment");
 		
 		while (gameOn)
 		{
