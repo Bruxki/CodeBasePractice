@@ -123,8 +123,8 @@ static bool MapEmptiness(string[,] map)
 		//2nd Enemy
         do
         {
-            x = rnd.Next(0,4);
-		    y = rnd.Next(0,4);
+        	x = rnd.Next(0,4);
+		y = rnd.Next(0,4);
         }
         while (map[x,y] == "E");
 		map[x,y] = "E";
