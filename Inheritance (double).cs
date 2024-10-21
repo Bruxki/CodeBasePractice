@@ -14,7 +14,8 @@ public class Program
 		Person[] personList = {bob, dean, sam};
 		PrintAll(personList);
 		
-		//this was supposed to access different classes up the inheritance tree but it didn't work, idk why..
+		//this was supposed to access different classes' Print() up the inheritance tree but it didn't work, idk why..
+		//solved: you need to use virtual for the lowest in the tree, and override for the highest ones
 		void PrintAll (Person[] list)
 		{
 			for (int i = 0; i < list.Length; i++)
@@ -30,7 +31,7 @@ class Person
 	public int age;
 	public Person(string n, int a) {name = n; age = a;}
 	
-	public void Print()
+	public virtual void Print()
 	{
 		Console.WriteLine("I am a Person " + name + age);
 	}
@@ -43,7 +44,7 @@ class Employee : Person
 	{
 		Occupation = occupation;
 	}
-	public void Print()
+	public override void Print()
 	{
 		Console.WriteLine("I am an Employee " + name + age + Occupation);
 	}
@@ -57,7 +58,7 @@ class Programmer : Employee
 	{
 		Specialization = specialization;
 	}
-	public void Print()
+	public override void Print()
 	{
 		Console.WriteLine("I am a Programmer " + name + age + Occupation + Specialization);
 	}
