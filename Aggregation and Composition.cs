@@ -39,7 +39,7 @@ public class Car
 	Wheel[] wheels = new Wheel[4];
 	
 	//Aggregation = part of the "Car" but cotinues to exist outside of it
-	// It also could be in other classes like "Hotel","Gas Station", "Heaven(he died in the end of the movie Drive)"
+	// It also could be in other classes like "Hotel","Gas Station", "Heaven(he died at the end of the movie Drive)"
 	private RyanGosling ryanGosling;
 	
 	//Constructor
