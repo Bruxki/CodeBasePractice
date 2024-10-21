@@ -34,11 +34,12 @@ public class Wheel
 }
 public class Car
 {
-	//Composition (part-of)
+	//Composition = part of the "Car" that does not exist outside of it
 	Engine engine = new Engine();
 	Wheel[] wheels = new Wheel[4];
 	
-	//Aggregation
+	//Aggregation = part of the "Car" but cotinues to exist outside of it
+	// It also could be in other classes like "Hotel","Gas Station", "Heaven(he died in the end of the movie Drive)"
 	private RyanGosling ryanGosling;
 	
 	//Constructor
