@@ -1,12 +1,12 @@
-using System;
+ousing System;
 					
 public class Program
 {
 	public static void Main()
 	{
 		RyanGosling Ryan = new RyanGosling();
-		Car toyota = new Car(Ryan);
-		toyota.Drive();
+		Car chevroletMalibu = new Car(Ryan);
+		chevroletMalibu.Drive();
 	}
 }
 public class RyanGosling
