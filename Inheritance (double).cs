@@ -10,6 +10,18 @@ public class Program
 		dean.Print();
 		Programmer sam = new Programmer ("Sam", 23, "hard-worker", "programmer");
 		sam.Print();
+		
+		Person[] personList = {bob, dean, sam};
+		PrintAll(personList);
+		
+		//this was supposed to access different classes up the inheritance tree but it didn't work, idk why..
+		void PrintAll (Person[] list)
+		{
+			for (int i = 0; i < list.Length; i++)
+			{
+				list[i].Print();
+			}
+		}
 	}
 }
 class Person
@@ -25,7 +37,7 @@ class Person
 }
 class Employee : Person
 {
-	public string Occupation {get;set;} = "";
+	public string Occupation {get;set;}
 	public Employee(string name, int age, string occupation)
 		: base (name,age)
 	{
@@ -38,7 +50,7 @@ class Employee : Person
 }
 class Programmer : Employee
 {
-	public string Specialization {get; set;} = "";
+	public string Specialization {get; set;}
 	
 	public Programmer(string name, int age, string occupation, string specialization)
 		:base (name,age,occupation)
