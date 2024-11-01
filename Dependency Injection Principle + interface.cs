@@ -35,7 +35,6 @@ public class Program
 	//This acts like a buffer
 	public interface IMessageSender
 	{
-		//No need to put anything here, since it would be overriden by dependencies
 		void SendMessage();
 	}
 	
