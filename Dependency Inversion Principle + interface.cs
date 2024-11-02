@@ -32,7 +32,7 @@ public class Program
 		}
 		
 	}
-	//This acts like a buffer
+	//An abstraction layer
 	public interface IMessageSender
 	{
 		void SendMessage();
